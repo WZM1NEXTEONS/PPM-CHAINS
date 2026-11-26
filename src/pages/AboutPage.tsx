@@ -153,9 +153,9 @@ export const AboutPage: React.FC = () => {
             <div className="lg:col-span-5">
               <div className="overflow-hidden rounded-[16px]">
                 <img
-                  src="/images/about-showroom.png"
-                  alt="AJC Jewellery Showroom"
-                  className="h-[270px] sm:h-[310px] w-full object-cover"
+                  src="/images/ppm-showroom.jpg"
+                  alt="PPM Chains Showroom"
+                  className="h-[270px] sm:h-[310px] w-full object-cover object-center"
                 />
               </div>
             </div>
