@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PPM Chains — Chains for jewellers, made and supplied by PPM</title>
+<script>window.addEventListener("error",function(e){if(e.target&&e.target.tagName==="IMG")e.target.style.visibility="hidden"},true);</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#83930a; --green-dk:#697608; --brown:#62513b; --gold:#c29b53; --gold-2:#bf935a;
+  --bg:#f1f1f1; --ink:#111; --grey:#555;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,"Inter Display",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:normal}
+img{display:block;max-width:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+/* "Inter Display" = Inter at its display optical size; "Gilroy" falls back to Inter */
+.d{font-family:Inter,system-ui,sans-serif;font-variation-settings:"opsz" 32}
+.gl{font-family:Gilroy,Inter,system-ui,sans-serif}
+.page{overflow-x:clip;position:relative}
+.frame{width:1280px;max-width:100%;margin-inline:auto;position:relative}
+.fill{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.eyebrow{display:flex;align-items:center;gap:12px}
+.eyebrow i{width:6px;height:6px;border-radius:1px;background:var(--gold);flex:none}
+.eyebrow span{font-weight:500;font-size:12px;color:var(--grey);letter-spacing:-.24px}
+.eyebrow.up span{font-weight:600;font-size:12.5px;letter-spacing:.998px;line-height:19.97px;text-transform:uppercase}
+.h2-32{font-weight:600;font-size:32px;letter-spacing:-.64px;color:var(--ink)}
+.h2-44{font-weight:600;font-size:44px;color:var(--ink)}
+.reveal{opacity:1;transform:none}
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;top:28px;left:50%;transform:translateX(-50%);width:min(1099px,calc(100% - 32px));height:60px;background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:44px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;z-index:60}
+.nav .logo{width:40px;height:40px;flex:none;position:relative;overflow:hidden}
+.nav .logo img{position:absolute;inset:0;width:100%;height:100%}
+.nav ul{list-style:none;display:flex;gap:24px;align-items:center;font-weight:500;font-size:14px;letter-spacing:-.28px;color:#323232;text-transform:capitalize;white-space:nowrap}
+.nav ul a{transition:color .2s}
+.nav ul a:hover,.nav ul a.active{color:var(--green)}
+.nav .right{display:flex;gap:12px;align-items:center;justify-content:flex-end}
+.nav .search{border:1px solid var(--green);border-radius:50px;padding:12px 14px;backdrop-filter:blur(22px);display:flex;transition:background .2s}
+.nav .search:hover{background:rgba(131,147,10,.1)}
+.nav .search img{width:20px;height:20px}
+.btn-cta{background:var(--green);color:#fff;height:44px;padding:12px 20px;border-radius:24px;font-weight:500;font-size:14px;letter-spacing:-.28px;display:inline-flex;align-items:center;white-space:nowrap;transition:background .2s,transform .2s}
+.btn-cta:hover{background:var(--green-dk)}
+.burger{display:none;width:44px;height:44px;border:1px solid var(--green);border-radius:50%;align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.burger b{display:block;width:16px;height:2px;background:var(--green);border-radius:2px;transition:transform .25s,opacity .25s}
+.burger.open b:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger.open b:nth-child(2){opacity:0}
+.burger.open b:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.drawer{position:fixed;top:100px;left:16px;right:16px;background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:24px;padding:12px;z-index:59;display:none;flex-direction:column}
+.drawer.open{display:flex}
+.drawer a{padding:14px 16px;font-weight:500;font-size:16px;color:#323232;text-transform:capitalize;border-radius:12px}
+.drawer a:hover{background:var(--bg);color:var(--green)}
+.searchbar{position:fixed;top:100px;left:50%;transform:translateX(-50%);width:min(560px,calc(100% - 32px));background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:24px;padding:10px 10px 10px 18px;display:none;gap:10px;align-items:center;z-index:61;box-shadow:0 18px 40px rgba(0,0,0,.12)}
+.searchbar.open{display:flex}
+.searchbar input{flex:1;border:0;outline:0;font:500 14px Inter,sans-serif;color:#323232;background:transparent;min-width:0}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;height:880px;background:linear-gradient(90deg,rgba(0,0,0,.2),rgba(0,0,0,.2)),linear-gradient(181.6255deg,#fff 19.423%,#83930a 52.71%,#83930a 100.25%)}
+.hero .stage{position:absolute;left:50%;top:0;width:1280px;height:100%;transform:translateX(-50%)}
+.hero-img{position:absolute;left:241px;top:94px;width:1365.468px;height:843.114px;transform:scaleX(-1);overflow:hidden;pointer-events:none}
+.hero-img img{position:absolute;top:0;left:0;height:100%;width:109.71%}
+.hero-fade{position:absolute;left:0;right:0;bottom:-75px;height:227px;pointer-events:none}
+.hero-fade img{position:absolute;inset:0;width:100%;height:100%}
+.hero-copy{position:absolute;left:60px;top:calc(50% - .5px);transform:translateY(-50%);width:584px;display:flex;flex-direction:column;gap:28px;color:#fff}
+.hero-copy h1{font-weight:600;font-size:62px;line-height:1.05;letter-spacing:-1.24px;margin-bottom:12px}
+.hero-copy p{font-size:16px;width:567px;max-width:100%}
+.hero-btns{display:flex;gap:12px;width:512px;max-width:100%}
+.hbtn{flex:1;height:56px;border-radius:16px;padding:12px 20px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:16px;letter-spacing:-.32px;white-space:nowrap;transition:transform .2s,background .2s,color .2s}
+.hbtn.solid{background:#fff;color:var(--green-dk)}
+.hbtn.ghost{border:1px solid #fff;color:#fff}
+.hbtn.solid:hover{transform:translateY(-2px);background:#f6f6f0}
+.hbtn.ghost:hover{background:#fff;color:var(--green-dk)}
+.bars{position:absolute;left:1219px;top:calc(50% - .5px);transform:translateY(-50%);width:16px;display:flex;flex-direction:column;gap:3px}
+.bars i{display:block;border-radius:6px;background:rgba(255,255,255,.16)}
+.bars i:nth-child(1),.bars i:nth-child(3){height:18px}
+.bars i:nth-child(2){height:37px;background:rgba(255,255,255,.66)}
+
+/* trending cards */
+.trend{position:relative;z-index:2;margin-top:-82px}
+.trend .frame{padding:0 17px 0 44px}
+.trend-row{display:flex;gap:20px}
+.tcard{flex:0 0 393px;height:278px;background:var(--bg);border-radius:32px;position:relative;overflow:hidden;box-shadow:112px 171px 57px 0 rgba(0,0,0,0),71px 110px 52px 0 rgba(0,0,0,.01),40px 62px 44px 0 rgba(0,0,0,.05),18px 27px 33px 0 rgba(0,0,0,.09),4px 7px 18px 0 rgba(0,0,0,.1);transition:transform .35s ease}
+.tcard:hover{transform:translateY(-6px)}
+.tcard .lab{position:absolute;left:20px;top:16px;display:flex;flex-direction:column;gap:2px;color:var(--brown);text-align:center;z-index:2}
+.tcard .lab small{font-weight:500;font-size:14px;text-align:left}
+.tcard .lab strong{font-weight:700;font-size:24px}
+.tcard .pic{position:absolute;left:69px;top:-43px;width:308px;height:241.376px;overflow:hidden;transition:transform .5s ease}
+.tcard .pic img{position:absolute;left:0;top:-.23%;width:100%;height:127.6%}
+.tcard .pic2{position:absolute;left:50%;margin-left:.39px;transform:translateX(-50%);top:0;width:221.786px;height:221px;transition:transform .5s ease}
+.tcard .pic2 img{width:100%;height:100%;object-fit:cover}
+.tcard:hover .pic{transform:scale(1.05)}
+.tcard:hover .pic2{transform:translateX(-50%) scale(1.05)}
+.tcard .row{position:absolute;left:16px;right:16px;top:218px;display:flex;gap:12px;align-items:center;z-index:2}
+.tcard .price{flex:0 0 270px;height:44px;background:#dbdbdb;border-radius:8px;padding:10px 12px;font-weight:500;font-size:16px;color:var(--brown);display:flex;align-items:center;white-space:nowrap}
+.tcard .price b{font-weight:700;margin-left:.28em}
+.tcard .go{flex:1;height:44px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.tcard .go:hover{background:var(--green-dk)}
+.tcard .go img{width:24px;height:24px;transform:scaleX(-1)}
+
+/* ---------- STATS ---------- */
+.stats{background:var(--bg);margin-top:30px}
+.stats .frame{padding:16px;display:flex;align-items:center;justify-content:space-between}
+.stat{display:flex;gap:8px;align-items:center}
+.stat img{width:24px;height:24px;flex:none}
+.stat div{display:flex;flex-direction:column;gap:2px}
+.stat b{font-weight:600;font-size:16px;letter-spacing:-.32px;color:var(--green)}
+.stat span{font-weight:500;font-size:14px;letter-spacing:-.28px;color:#646464;white-space:nowrap}
+.vdiv{width:0;height:33px;display:flex;align-items:center;justify-content:center;flex:none}
+.vdiv>span{display:block;transform:rotate(90deg);width:33px;height:0;position:relative}
+.vdiv img{position:absolute;left:0;right:0;top:-1px;width:33px;height:1px}
+
+/* ---------- Section: two approaches ---------- */
+.sec{background:var(--bg);border-bottom:.667px solid rgba(255,255,255,.06)}
+.sec-approach{margin-top:12px}
+.sec-approach .frame{padding:24px 44px}
+.sec-approach .head{display:flex;flex-direction:column;gap:12px;margin-bottom:40px}
+.sec-approach .head .t{display:flex;flex-direction:column;gap:8px}
+.sec-approach .head p{font-weight:600;font-size:16px;color:#2a2a2a}
+.two{display:flex;gap:16px}
+.acard{flex:1;height:327px;border-radius:24px;overflow:hidden;position:relative;padding:24px;display:flex;align-items:center;color:#fff}
+.acard>img{border-radius:24px;transition:transform .6s ease}
+.acard:hover>img{transform:scale(1.04)}
+.acard .in{position:relative;display:flex;flex-direction:column;gap:1.6px;width:100%}
+.acard h3{font-weight:600;font-size:24px;width:379px;max-width:100%}
+.acard p{font-weight:500;font-size:14px;padding:10.4px 0 18.4px}
+.acard .lnk{align-self:flex-start;background:#fff;border:1px solid rgba(255,255,255,.35);border-radius:16px;padding:7.84px 18.333px 8.31px;font-weight:600;font-size:12.8px;line-height:20.48px;color:#000;transition:background .2s,color .2s}
+.acard .lnk:hover{background:var(--green);color:#fff}
+
+/* ---------- Selected chain designs ---------- */
+.sel{padding-top:63.33px}
+.sel .frame{padding:0 42.5px}
+.sel .head{display:flex;flex-direction:column;gap:8px;margin-bottom:40px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pcard{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:12px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.08)}
+.badge{display:inline-flex;background:rgba(131,147,10,.15);color:var(--green);font-weight:600;font-size:14px;padding:4px 10px;border-radius:8px}
+.pcard .body{display:flex;flex-direction:column;gap:20px}
+.pcard .pic{width:132px;height:154px;margin:0 auto;position:relative;overflow:hidden}
+.pcard .pic img{position:absolute;height:144.02%;left:-33.33%;top:-29.48%;width:168.02%;transition:transform .5s}
+.pcard:hover .pic img{transform:scale(1.06)}
+.pcard .txt{display:flex;flex-direction:column;gap:12px}
+.pcard .txt .n{display:flex;flex-direction:column;gap:4px;max-width:253px}
+.pcard .txt small{font-weight:500;font-size:14px;color:#4d4d4d}
+.pcard .txt strong{font-weight:600;font-size:20px;color:var(--brown)}
+.pcard .txt p{font-weight:500;font-size:14px;color:#a0a0a0}
+.pbtns{display:flex;gap:12px}
+.pbtns a,.pbtns button{height:44px;border-radius:16px;font-weight:600;font-size:16px;display:flex;align-items:center;transition:background .2s,color .2s}
+.pbtns .v{flex:1;border:1px solid var(--green);color:var(--green);padding:10px 12px}
+.pbtns .v:hover{background:var(--green);color:#fff}
+.pbtns .e{flex:0 0 120px;background:var(--green);color:#fff;justify-content:center}
+.pbtns .e:hover{background:var(--green-dk)}
+
+/* ---------- Craft + range ---------- */
+.craft{margin-top:11px;border-bottom:.667px solid rgba(255,255,255,.06)}
+.craft .frame{padding:24px 44px}
+.craft .head{display:flex;flex-direction:column;gap:24px;margin-bottom:40px}
+.craft .head .t{display:flex;flex-direction:column;gap:12px}
+.craft .head .t>div{display:flex;flex-direction:column;gap:8px}
+.craft .head p{font-weight:600;font-size:16px;color:#2a2a2a}
+.ctabtn{align-self:flex-start;background:var(--green);color:#fff;border-radius:16px;padding:16px;display:inline-flex;gap:10px;align-items:center;font-weight:600;font-size:16px;transition:background .2s}
+.ctabtn:hover{background:var(--green-dk)}
+.ctabtn img{width:24px;height:24px;transition:transform .25s}
+.ctabtn:hover img{transform:translateX(4px)}
+.steps{display:flex;gap:16px;align-items:flex-start}
+.step{flex:1;min-width:0}
+.step .top{display:flex;align-items:center;padding-bottom:16px;margin-bottom:-.66px}
+.step .num{width:36px;height:36px;border-radius:18px;background:#151515;border:1px solid rgba(194,155,83,.35);color:var(--gold-2);font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;transition:background .25s,color .25s}
+.step:hover .num{background:var(--gold-2);color:#151515}
+.step .ln{flex:1;height:1px;margin-left:12px;background:#ddd}
+.step .c{display:flex;flex-direction:column;gap:5px;padding-right:8px}
+.step h4{font-weight:600;font-size:12px;color:var(--brown)}
+.step h4.q{color:var(--gold)}
+.step p{font-weight:500;font-size:14px;color:#6d6d6d}
+
+.range{margin-top:-0px}
+.range .frame{padding:24px 44px}
+.range .head{margin-bottom:16px;display:flex;flex-direction:column;gap:8px}
+.rcard{position:relative;overflow:hidden;border-radius:24px;border:2px solid #fff;display:flex;color:#fff;height:327px}
+.rcard .shade{position:absolute;inset:0;background:rgba(0,0,0,.2);border-radius:24px}
+.rcard .in{position:relative;display:flex;flex-direction:column;gap:20px;width:100%}
+.rcard .bgimg{border-radius:24px;transition:transform .6s}
+.rcard:hover .bgimg{transform:scale(1.04)}
+.rcard.big{padding:24px;align-items:center}
+.rcard.big .in{gap:24px;align-items:flex-start}
+.rcard.big .in .tx{display:flex;flex-direction:column;gap:12px}
+.rcard.big .tx>div{display:flex;flex-direction:column;gap:2px}
+.rcard.big .tx small{font-weight:500;font-size:12px}
+.rcard.big .tx h3{font-weight:600;font-size:24px}
+.rcard.big .tx p{font-weight:500;font-size:14px;color:#efefef;width:306px;max-width:100%}
+.rcard.sm{padding:24px 20px 16px;align-items:flex-end}
+.rcard.sm .tx{display:flex;flex-direction:column;gap:8px}
+.rcard.sm h3{font-weight:700;font-size:24px;letter-spacing:-.48px}
+.rcard.sm p{font-weight:500;font-size:14px;color:#efefef}
+.pill{background:#fff;height:44px;border-radius:9999px;padding:16px;display:inline-flex;align-items:center;font-weight:500;font-size:16px;color:var(--brown);align-self:flex-start;transition:background .2s,color .2s}
+.pill:hover{background:var(--green);color:#fff}
+.rrow2{display:flex}
+.rrow2 .l{flex:1;min-width:0}
+.rrow2 .r{flex:0 0 600px;height:326px;border-width:1px}
+
+/* ---------- About ---------- */
+.about{position:relative;background:#000;height:507px;margin-top:-6px;overflow:hidden;border-bottom:.667px solid rgba(255,255,255,.06);color:#fff}
+.glow{position:absolute;left:calc(50% - 736px);top:-413.5px;width:1615px;height:536px;pointer-events:none}
+.glow img{position:absolute;left:-18.77%;right:-18.77%;top:-56.55%;bottom:-56.55%;width:137.54%;height:213.1%}
+.about .frame{height:100%}
+.about .in{position:absolute;left:44px;top:40px;width:1200px;max-width:calc(100% - 88px);display:flex;flex-direction:column;gap:32px}
+.about .top{display:flex;flex-direction:column;gap:20px}
+.about .top>div{display:flex;flex-direction:column;gap:12px}
+.about .eyebrow span{color:#c5c5c5;font-weight:600;font-size:12px;letter-spacing:0}
+.about h2{font-weight:400;font-size:40px;color:#fcfcfc;width:813px;max-width:100%;margin-top:8px}
+.about .top p{font-weight:600;font-size:16px;color:#dbdbdb;width:575px;max-width:100%}
+.story{width:575px;max-width:100%;height:56px;border-radius:99999px;background:#fff;color:#262626;font-weight:600;font-size:16px;letter-spacing:-.32px;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
+.story:hover{background:var(--green);color:#fff}
+.facts{display:flex;gap:12px;height:146px}
+.fact{flex:1;background:#272727;border-radius:12px;padding:16px 12px;display:flex;flex-direction:column;gap:10px;transition:background .25s}
+.fact:hover{background:#303030}
+.fact img{width:24px;height:24px}
+.fact div{display:flex;flex-direction:column;gap:12px}
+.fact b{font-weight:600;font-size:16px;color:#fcfcfc}
+.fact span{font-weight:500;font-size:14px;color:#cbcbcb}
+
+/* ---------- CTA ---------- */
+.cta{position:relative;height:538px;overflow:hidden;color:#fff}
+.cta .shade{position:absolute;inset:0;background:rgba(0,0,0,.2)}
+.cta .frame{height:100%}
+.cta .in{position:absolute;left:47px;top:125px;width:482px;max-width:calc(100% - 48px);display:flex;flex-direction:column;gap:24px}
+.cta .in>div{display:flex;flex-direction:column;gap:8px}
+.cta small{font-weight:500;font-size:12px}
+.cta h2{font-weight:600;font-size:32px;letter-spacing:-.64px}
+.cta p{font-weight:500;font-size:14px}
+.cta .wbtn{align-self:flex-start;height:52px;padding:16px 24px;border-radius:9999px;background:#fff;color:#252525;font-weight:600;font-size:16px;display:inline-flex;align-items:center;white-space:nowrap;transition:background .2s,color .2s}
+.cta .wbtn:hover{background:var(--green);color:#fff}
+
+/* ---------- Footer ---------- */
+.foot{position:relative;background:#000;overflow:hidden;border-bottom:.667px solid rgba(255,255,255,.06)}
+.foot .gl2{position:absolute;left:calc(50% - 806px);top:-425px;width:1615px;height:536px;pointer-events:none}
+.foot .gl2 img{position:absolute;left:-18.77%;right:-18.77%;top:-56.55%;bottom:-56.55%;width:137.54%;height:213.1%}
+.foot .frame{padding:44px;display:flex;gap:62px;align-items:flex-start}
+.fbrand{flex:0 0 515px;display:flex;flex-direction:column;gap:16px;padding-right:16px;padding-bottom:74.56px}
+.fbrand .nm{font-weight:600;font-size:20px;color:#f2f2f2;height:37.11px;display:flex;align-items:center}
+.fbrand p{font-weight:400;font-size:14px;color:#8c8c8c}
+.fbrand .acts{display:flex;flex-direction:column;gap:10px;padding-top:4px}
+.fbtn{display:flex;align-items:center;justify-content:center;border-radius:9999px;font-weight:600;font-size:12px;padding:7.5px 18px 8px;transition:background .2s,color .2s}
+.fbtn.a{background:#f2f2f2;border:1px solid #fff;color:#111}
+.fbtn.a:hover{background:var(--green);color:#fff;border-color:var(--green)}
+.fbtn.b{border:1px solid rgba(255,255,255,.35);color:#fff}
+.fbtn.b:hover{background:#fff;color:#111}
+.fcols{display:flex;gap:32px}
+.fcol{width:142.941px;display:flex;flex-direction:column;gap:17.99px}
+.fcol h5{font-weight:600;font-size:12px;color:var(--gold-2)}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.fcol li{min-height:19.59px;padding:1.5px 0 1.1px;font-size:14px;color:#cdcdcd}
+.fcol li a{transition:color .2s}
+.fcol li a:hover{color:#fff}
+
+/* ---------- Modal / toast ---------- */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:100}
+.modal.open{display:flex}
+.sheet{background:#fff;border-radius:24px;width:min(480px,100%);padding:28px;position:relative;max-height:90vh;overflow:auto}
+.sheet h3{font-weight:600;font-size:24px;letter-spacing:-.48px;color:var(--ink);margin-bottom:6px}
+.sheet .sub{font-weight:500;font-size:14px;color:#6d6d6d;margin-bottom:18px}
+.sheet label{display:block;font-weight:600;font-size:12px;color:var(--brown);margin:12px 0 6px}
+.sheet input,.sheet select,.sheet textarea{width:100%;border:1px solid rgba(0,0,0,.15);border-radius:12px;padding:12px;font:500 14px Inter,sans-serif;color:#323232;background:#fff;outline:0}
+.sheet input:focus,.sheet select:focus,.sheet textarea:focus{border-color:var(--green)}
+.sheet .x{position:absolute;right:16px;top:14px;width:32px;height:32px;border-radius:50%;font-size:20px;line-height:1;color:#6d6d6d}
+.sheet .x:hover{background:var(--bg)}
+.sheet .send{margin-top:18px;width:100%;height:52px;border-radius:16px;background:var(--green);color:#fff;font-weight:600;font-size:16px}
+.sheet .send:hover{background:var(--green-dk)}
+.sheet .ok{display:none;text-align:center;padding:24px 0;font-weight:600;color:var(--green)}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:#151515;color:#fff;font-weight:500;font-size:14px;padding:12px 18px;border-radius:12px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:120}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1180px){
+  .nav ul{display:none}
+  .burger{display:flex}
+  .hero{height:auto;min-height:760px}
+  .hero .stage{position:relative;left:auto;transform:none;width:100%;height:auto;padding:150px 24px 190px}
+  .hero-img{left:auto;right:-30%;top:90px;width:min(1000px,150vw);height:auto;aspect-ratio:1365/843;opacity:.9}
+  .hero-copy{position:relative;left:auto;top:auto;transform:none;width:min(584px,100%);z-index:2}
+  .hero-copy h1{font-size:clamp(38px,6.4vw,62px)}
+  .bars{display:none}
+  .trend{margin-top:-120px}
+  .trend .frame{padding:0}
+  .trend-row{overflow-x:auto;scroll-snap-type:x mandatory;padding:60px 24px 40px;margin-top:-40px;scrollbar-width:none}
+  .trend-row::-webkit-scrollbar{display:none}
+  .tcard{flex:0 0 min(393px,86vw);scroll-snap-align:center}
+  .tcard .price{flex:1}
+  .stats{margin-top:0}
+  .stats .frame{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;padding:24px}
+  .vdiv{display:none}
+  .stat span{white-space:normal}
+  .sec-approach .frame,.craft .frame,.range .frame{padding:24px}
+  .sel .frame{padding:0 24px}
+  .grid4{grid-template-columns:repeat(2,1fr)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 16px}
+  .h2-44{font-size:36px}
+  .about{height:auto;padding-bottom:40px}
+  .about .in{position:relative;left:auto;top:auto;width:auto;max-width:none;margin:0 24px;padding-top:40px}
+  .about h2{font-size:34px}
+  .glow{left:-96px}
+  .foot .gl2{left:-166px}
+  .foot .frame{flex-direction:column;gap:40px;padding:44px 24px}
+  .fbrand{flex:none;width:100%;padding-bottom:0}
+}
+@media (max-width:820px){
+  .two,.rrow2,.facts{flex-direction:column}
+  .acard,.rcard{height:auto;min-height:327px}
+  .rrow2 .r{flex:none;width:100%;height:auto;min-height:326px}
+  .rcard.sm{min-height:327px}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .facts{height:auto}
+  .fact{min-height:146px}
+  .cta{height:auto;min-height:538px}
+  .cta .in{position:relative;left:auto;top:auto;margin:0 24px;padding:110px 0 70px;max-width:none;width:auto}
+  .fcols{flex-wrap:wrap;gap:28px 32px}
+}
+@media (max-width:560px){
+  .nav .btn-cta{display:none}
+  .hero .stage{padding:130px 20px 170px}
+  .hero-copy p{width:100%}
+  .hero-btns{flex-direction:column}
+  .stats .frame{grid-template-columns:1fr}
+  .grid4{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .h2-32{font-size:26px}
+  .h2-44{font-size:30px}
+  .about h2{font-size:28px}
+  .acard h3{font-size:22px}
+  .cta h2{font-size:26px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .reveal{transition:none;opacity:1;transform:none}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="page" id="top">
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a class="logo" href="#top" aria-label="PPM Chains"><img src="assets/logo.svg" alt="PPM logo"></a>
+  <ul>
+    <li><a href="#top" data-spy="top">Home</a></li>
+    <li><a href="#chains" data-spy="chains">Chains</a></li>
+    <li><a href="#manufacturing" data-spy="manufacturing">manufacturing</a></li>
+    <li><a href="#about" data-spy="about">about PPM</a></li>
+    <li><a href="#contact" data-spy="contact">Contact</a></li>
+  </ul>
+  <div class="right">
+    <button class="search" id="searchBtn" aria-label="Search"><img src="assets/icon-search.svg" alt=""></button>
+    <button class="burger" id="burger" aria-label="Menu"><b></b><b></b><b></b></button>
+    <a class="btn-cta" href="#" data-enquire>Start an Enquiry →</a>
+  </div>
+</header>
+<nav class="drawer" id="drawer">
+  <a href="#top">Home</a><a href="#chains">Chains</a><a href="#manufacturing">manufacturing</a><a href="#about">about PPM</a><a href="#contact">Contact</a>
+</nav>
+<form class="searchbar" id="searchbar" role="search">
+  <input id="searchInput" type="search" placeholder="Search chains…" aria-label="Search chains">
+  <button class="btn-cta" type="submit">Search</button>
+</form>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="stage">
+    <div class="hero-img"><img src="assets/hero-portrait.png" alt="" onerror="this.style.visibility='hidden'"></div>
+    <div class="hero-copy">
+      <div>
+        <h1 class="d">Chains for jewellers, made and supplied by PPM.</h1>
+        <p class="d">Machine-made and Kerala handcrafted chains for jewellery retailers and wholesale buyers. Browse the range, then tell us what you need.</p>
+      </div>
+      <div class="hero-btns">
+        <a class="hbtn solid" href="#chains">Explore Chains</a>
+        <a class="hbtn ghost" href="#" data-enquire>Enquire for Wholesale</a>
+      </div>
+    </div>
+    <div class="bars" aria-hidden="true"><i></i><i></i><i></i></div>
+  </div>
+  <div class="hero-fade"><img src="assets/hero-fade.svg" alt="" onerror="this.style.visibility='hidden'"></div>
+</section>
+
+<!-- TRENDING CARDS -->
+<section class="trend">
+  <div class="frame"><div class="trend-row">
+    <article class="tcard">
+      <div class="lab d"><small>Trending</small><strong>Chains</strong></div>
+      <div class="row"><div class="price gl">starting from <b>₹1,070.00</b></div><a class="go" href="#chains" aria-label="View chains"><img src="assets/icon-arrow.svg" alt=""></a></div>
+      <div class="pic"><img src="assets/chain-pendant.png" alt="Trending chain" onerror="this.style.visibility='hidden'"></div>
+    </article>
+    <article class="tcard">
+      <div class="pic"><img src="assets/chain-pendant.png" alt="Bestseller chain" onerror="this.style.visibility='hidden'"></div>
+      <div class="lab d"><small>Bestseller</small><strong>Chains</strong></div>
+      <div class="row"><div class="price gl">starting from <b>₹1,070.00</b></div><a class="go" href="#chains" aria-label="View chains"><img src="assets/icon-arrow.svg" alt=""></a></div>
+    </article>
+    <article class="tcard">
+      <div class="lab d"><small>Premium</small><strong>Chains</strong></div>
+      <div class="row"><div class="price gl">starting from <b>₹1,070.00</b></div><a class="go" href="#chains" aria-label="View chains"><img src="assets/icon-arrow.svg" alt=""></a></div>
+      <div class="pic2"><img src="assets/chain-beads.png" alt="Premium chain" onerror="this.style.visibility='hidden'"></div>
+    </article>
+  </div></div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="frame">
+    <div class="stat"><img src="assets/icon-cad.svg" alt=""><div><b>In-house CAD &amp; Design</b><span>Design and development capabilities</span></div></div>
+    <div class="vdiv"><span><img src="assets/divider.svg" alt=""></span></div>
+    <div class="stat"><img src="assets/icon-facility.svg" alt=""><div><b>15,000 sq ft Facility</b><span>Manufacturing facility in Malappuram</span></div></div>
+    <div class="vdiv"><span><img src="assets/divider.svg" alt=""></span></div>
+    <div class="stat"><img src="assets/icon-team.svg" alt=""><div><b>~100 Skilled Employees</b><span>A team supporting jewellery production</span></div></div>
+    <div class="vdiv"><span><img src="assets/divider.svg" alt=""></span></div>
+    <div class="stat"><img src="assets/icon-quality.svg" alt=""><div><b>Multi-stage Quality Inspection</b><span>Quality checks throughout production</span></div></div>
+  </div>
+</section>
+
+<!-- TWO APPROACHES -->
+<section class="sec sec-approach">
+  <div class="frame">
+    <div class="head reveal">
+      <div class="t"><div class="eyebrow"><i></i><span>EXPLORE OUR RANGE</span></div><h2 class="h2-32">Two approaches to chain making</h2></div>
+      <p class="d">Explore machine-made and Kerala handcrafted chains for your wholesale collection.</p>
+    </div>
+    <div class="two reveal">
+      <article class="acard">
+        <img class="fill" src="assets/machine-made-bg.png" alt="" onerror="this.style.visibility='hidden'">
+        <div class="in"><h3 class="d">Machine-made chains</h3><p class="d">Explore chain designs produced through machine-based manufacturing for your wholesale range.</p><a class="lnk" href="#chains">Explore machine-made chains</a></div>
+      </article>
+      <article class="acard">
+        <img class="fill" src="assets/kerala-bg.png" alt="" onerror="this.style.visibility='hidden'">
+        <div class="in"><h3 class="d">Kerala handcrafted chains</h3><p class="d">Discover handcrafted chain designs that bring traditional Kerala jewellery craftsmanship to your collection.</p><a class="lnk" href="#chains">Explore handcrafted chains</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED CHAIN DESIGNS -->
+<section class="sel" id="chains">
+  <div class="frame">
+    <div class="head reveal"><div class="eyebrow"><i></i><span>Find your perfect piece by category</span></div><h2 class="h2-32">Selected chain designs</h2></div>
+    <div class="grid4 reveal" id="grid"></div>
+  </div>
+</section>
+
+<!-- CRAFT -->
+<section class="craft" id="manufacturing">
+  <div class="frame">
+    <div class="head reveal">
+      <div class="t">
+        <div><div class="eyebrow up"><i></i><span>FROM CRAFT TO FINISH</span></div><h2 class="h2-44 d">The craft behind every chain</h2></div>
+        <p class="d">Explore the stages that may shape a chain, from design and production to finishing and quality review. PPM's specific process will be confirmed with the team.</p>
+      </div>
+      <a class="ctabtn d" href="#about">Explore PPM's Manufacturing Capabilities <img src="assets/icon-arrow-right.svg" alt=""></a>
+    </div>
+    <div class="steps reveal">
+      <div class="step"><div class="top"><span class="num d">01</span><span class="ln"></span></div><div class="c d"><h4>Design &amp; preparation</h4><p>Chain patterns and design requirements are defined before production.</p></div></div>
+      <div class="step"><div class="top"><span class="num d">02</span><span class="ln"></span></div><div class="c d"><h4>Chain making</h4><p>Machine-made or handcrafted methods, depending on the chain type.</p></div></div>
+      <div class="step"><div class="top"><span class="num d">03</span><span class="ln"></span></div><div class="c d"><h4>Finishing &amp; detailing</h4><p>Finishing work appropriate to the product and its construction.</p></div></div>
+      <div class="step"><div class="top"><span class="num d">04</span><span class="ln"></span></div><div class="c d"><h4>Quality review</h4><p>Hand filing, mechanical jointing,<br>The inspection steps and quality criteria used by PPM are to be confirmed.</p></div></div>
+      <div class="step"><div class="top"><span class="num d">05</span></div><div class="c d"><h4 class="q">QUALITY AUDIT</h4><p>Metallurgical karat verification,<br>dimension audits, and finish<br>certification.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RANGE -->
+<section class="range sec" style="border:0">
+  <div class="frame">
+    <div class="head reveal"><div class="eyebrow up"><i></i><span>EXPLORE OUR RANGE</span></div><h2 class="h2-44 d">Find the right chains for your business.</h2></div>
+    <div class="reveal">
+      <article class="rcard big">
+        <img class="fill bgimg" src="assets/range-wholesale.png" alt="" onerror="this.style.visibility='hidden'"><div class="shade"></div>
+        <div class="in d">
+          <div class="tx"><div><small>EXPLORE THE RANGE</small><h3>Chains for wholesale buyers</h3></div><p>Browse available chain designs and find styles suited to your customers and assortment.</p></div>
+          <a class="pill" href="#chains">Explore All Chains</a>
+        </div>
+      </article>
+      <div class="rrow2">
+        <article class="rcard sm l">
+          <div class="fill" style="overflow:hidden;border-radius:24px"><img class="bgimg" src="assets/range-machine.png" alt="" style="position:absolute;left:0;width:100%;height:316.57%;top:-158.14%" onerror="this.style.visibility='hidden'"></div><div class="shade"></div>
+          <div class="in"><div class="tx"><h3>Machine-made chains</h3><p class="d">Explore chain designs made using machinery.</p></div><a class="pill d" href="#chains">Explore designs</a></div>
+        </article>
+        <article class="rcard sm r">
+          <img class="fill bgimg" src="assets/range-kerala.png" alt="" onerror="this.style.visibility='hidden'">
+          <div class="in"><div class="tx"><h3>Kerala handcrafted chains</h3><p class="d">Discover traditional chain-making styles.</p></div><a class="pill d" href="#chains">Explore designs</a></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="glow"><img src="assets/glow.svg" alt="" onerror="this.style.visibility='hidden'"></div>
+  <div class="frame">
+    <div class="in">
+      <div class="top d reveal">
+        <div>
+          <div class="eyebrow"><i></i><span>GET TO KNOW PPM</span></div>
+          <h2 class="d">A chain-making business built around wholesale relationships.</h2>
+          <p>PPM Chains manufactures machine-made and Kerala handcrafted chains for jewellery businesses. The group is managed by its second generation, including Benzeer, Nisar and Afsal.</p>
+        </div>
+        <a class="story" href="#" data-toast="PPM's story page is not part of this prototype">Discover PPM's Story</a>
+      </div>
+      <div class="facts reveal">
+        <div class="fact d"><img src="assets/icon-tag.svg" alt=""><div><b>Chain manufacturing</b><span>Machine-made and handcrafted chains</span></div></div>
+        <div class="fact d"><img src="assets/icon-tag.svg" alt=""><div><b>Wholesale focus</b><span>Serving jewellery businesses</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <img class="fill" src="assets/cta-bg.png" alt="" onerror="this.style.visibility='hidden'">
+  <div class="shade"></div>
+  <div class="frame"><div class="in d reveal">
+    <div><small>FOR WHOLESALE BUYERS</small><h2 style="font-family:Inter,sans-serif">Looking for a chain manufacturing partner?</h2><p>Tell us which chain styles you're interested in and your approximate order quantity. Our team can follow up to discuss your wholesale requirements.</p></div>
+    <a class="wbtn" href="#" data-enquire>Discuss Your Wholesale Requirements</a>
+  </div></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot" id="contact">
+  <div class="gl2"><img src="assets/footer-glow.svg" alt="" onerror="this.style.visibility='hidden'"></div>
+  <div class="frame" style="position:relative">
+    <div class="fbrand d">
+      <div class="nm">PPM Chains</div>
+      <p>Jewellery chain manufacturer and wholesale supplier. Machine-made and Kerala handcrafted chains for jewellery retailers and wholesale buyers.</p>
+      <div class="acts"><a class="fbtn a" href="#" data-enquire>Start a Business Enquiry →</a><a class="fbtn b" href="#contact" data-toast="Contact details are not part of the design">Contact Office →</a></div>
+    </div>
+    <div class="fcols d">
+      <div class="fcol"><h5>Chains</h5><ul><li><a href="#chains">Machine made</a></li><li><a href="#chains">Kerala handcrafted</a></li><li><a href="#chains">All chains</a></li><li aria-hidden="true"></li><li aria-hidden="true"></li><li aria-hidden="true"></li><li aria-hidden="true"></li><li aria-hidden="true"></li><li aria-hidden="true"></li></ul></div>
+      <div class="fcol"><h5>Company</h5><ul><li><a href="#manufacturing">Manufacturing</a></li><li><a href="#about">About PPM</a></li><li><a href="#" data-enquire>Wholesale enquiry</a></li></ul></div>
+      <div class="fcol"><h5>Contact</h5><ul><li><a href="#about">Overview</a></li><li><a href="#manufacturing">Design &amp; CAD</a></li><li><a href="#manufacturing">Manufacturing Process</a></li><li><a href="#top">Custom Jewellery</a></li><li><a href="#manufacturing">Craftsmanship</a></li><li><a href="#manufacturing">Quality</a></li><li><a href="#about">Facilities</a></li></ul></div>
+    </div>
+  </div>
+</footer>
+</div>
+
+<!-- ENQUIRY MODAL -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
+  <div class="sheet">
+    <button class="x" id="mx" aria-label="Close">×</button>
+    <h3 id="mt">Start a business enquiry</h3>
+    <p class="sub">Tell us which chain styles you're interested in and your approximate order quantity.</p>
+    <form id="enq">
+      <label for="f1">Name</label><input id="f1" required>
+      <label for="f2">Email or phone</label><input id="f2" required>
+      <label for="f3">Chain type</label>
+      <select id="f3"><option>Machine-made chains</option><option>Kerala handcrafted chains</option><option>Both</option></select>
+      <label for="f4">Approximate order quantity</label><input id="f4">
+      <button class="send" type="submit">Send enquiry</button>
+    </form>
+    <div class="ok" id="ok">Thank you — your enquiry has been noted.</div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+
+  /* build 8 product cards (content identical to the Figma frame) */
+  var g=$('#grid'), html='';
+  for(var i=0;i<8;i++){
+    html+='<article class="pcard"><span class="badge gl">Bestseller</span><div class="body"><div><div class="pic"><img src="assets/ring.png" alt="Sample Chain 01" onerror="this.style.visibility=\'hidden\'"></div>'+
+    '<div class="txt d"><div class="n"><small>Machine-made</small><strong>Sample Chain 01</strong></div><p>A uniform link chain made by machine. Suited to retailers building a consistent everyday range.</p></div></div>'+
+    '<div class="pbtns d"><a class="v" href="#" data-toast="Product pages are not part of this prototype">View Product</a><a class="e" href="#" data-enquire>Enquire</a></div></div></article>';
+  }
+  g.innerHTML=html;
+
+  /* toast */
+  var t=$('#toast'), tt;
+  function toast(m){t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('show')},2200)}
+
+  /* modal */
+  var modal=$('#modal');
+  function openM(){modal.classList.add('open');$('#enq').style.display='';$('#ok').style.display='none';setTimeout(function(){$('#f1').focus()},30)}
+  function closeM(){modal.classList.remove('open')}
+  $('#mx').addEventListener('click',closeM);
+  modal.addEventListener('click',function(e){if(e.target===modal)closeM()});
+  $('#enq').addEventListener('submit',function(e){e.preventDefault();this.style.display='none';$('#ok').style.display='block';this.reset();setTimeout(closeM,1800)});
+
+  /* delegated clicks */
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('[data-enquire]');
+    if(a){e.preventDefault();closeMenus();openM();return}
+    a=e.target.closest('[data-toast]');
+    if(a){e.preventDefault();toast(a.getAttribute('data-toast'));return}
+    a=e.target.closest('a[href^="#"]');
+    if(a&&a.getAttribute('href').length>1){closeMenus()}
+    if(!e.target.closest('#searchbar')&&!e.target.closest('#searchBtn'))$('#searchbar').classList.remove('open');
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeM();$('#searchbar').classList.remove('open');closeMenus()}});
+
+  /* menu + search */
+  var burger=$('#burger'), drawer=$('#drawer');
+  function closeMenus(){burger.classList.remove('open');drawer.classList.remove('open')}
+  burger.addEventListener('click',function(){burger.classList.toggle('open');drawer.classList.toggle('open');$('#searchbar').classList.remove('open')});
+  $('#searchBtn').addEventListener('click',function(){var s=$('#searchbar');s.classList.toggle('open');closeMenus();if(s.classList.contains('open'))setTimeout(function(){$('#searchInput').focus()},30)});
+  $('#searchbar').addEventListener('submit',function(e){e.preventDefault();this.classList.remove('open');document.getElementById('chains').scrollIntoView({behavior:'smooth'})});
+
+  /* scroll offset so sections clear the floating nav */
+  $$('a[href^="#"]').forEach(function(a){
+    var id=a.getAttribute('href');
+    if(id.length>1&&!a.hasAttribute('data-enquire')&&!a.hasAttribute('data-toast')){
+      a.addEventListener('click',function(e){var el=document.querySelector(id);if(!el)return;e.preventDefault();var y=el.getBoundingClientRect().top+window.pageYOffset-(id==='#top'?0:96);window.scrollTo({top:y,behavior:'smooth'})});
+    }
+  });
+
+  /* scroll reveal */
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12});
+    $$('.reveal').forEach(function(el){io.observe(el)});
+  }else{$$('.reveal').forEach(function(el){el.classList.add('in')})}
+
+  /* nav active state */
+  var map={top:$('#top'),chains:$('#chains'),manufacturing:$('#manufacturing'),about:$('#about'),contact:$('#contact')};
+  function spy(){
+    var y=window.pageYOffset+140,cur='top';
+    for(var k in map){if(map[k]&&map[k].getBoundingClientRect().top+window.pageYOffset<=y)cur=k}
+    $$('.nav ul a').forEach(function(a){a.classList.toggle('active',a.getAttribute('data-spy')===cur&&cur!=='top')});
+  }
+  window.addEventListener('scroll',spy,{passive:true});spy();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+:root {
+  --ppm-green: #244218;
+  --ppm-green-dark: #1d3513;
+  --ppm-green-tint: #dce1da;
+  --ppm-green-soft: #e4e8e3;
+  --ppm-surface: #f4f6f3;
+  --ppm-white: #ffffff;
+  --ppm-gold: #dfce64;
+  --ppm-gold-muted: #b2a550;
+  --ppm-gold-border: #c29b53;
+  --ppm-brown: #62513b;
+  --ppm-ink: #111111;
+  --ppm-ink-soft: #323232;
+  --ppm-muted: #555555;
+  --ppm-border: rgba(0, 0, 0, 0.12);
+  --ppm-border-subtle: rgba(0, 0, 0, 0.08);
+  --ppm-container: 1280px;
+  --ppm-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--ppm-ink);
+    background-color: var(--ppm-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: clip;
+  }
+
+  button,
+  a {
+    cursor: pointer;
+  }
+}
+
+.font-serif-display {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-serif-playfair {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-serif-upright {
+  font-family: 'Cormorant Upright', Georgia, serif;
+}
+
+.ppm-container {
+  width: 100%;
+  max-width: var(--ppm-container);
+  margin-inline: auto;
+  padding-inline: 44px;
+}
+
+@media (max-width: 1024px) {
+  .ppm-container {
+    padding-inline: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ppm-container {
+    padding-inline: 16px;
+  }
+}
+
+.section-rule {
+  width: 255px;
+  max-width: 100%;
+  height: 2px;
+  background-color: var(--ppm-green);
+}
+
+.card-shadow-trending {
+  box-shadow:
+    0 27px 33px rgba(0, 0, 0, 0.09),
+    0 7px 18px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-dropdown {
+  animation: fadeSlideDown 180ms var(--ppm-ease) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
