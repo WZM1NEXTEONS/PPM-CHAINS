@@ -27,3 +27,9 @@ npm run build
 - Output directory: `dist`
 - SPA client-side routing fallback is configured in both `netlify.toml` and `public/_redirects` (`/* /index.html 200`).
 - All enquiry and contact submissions are simulated locally in the browser for demonstration purposes; no backend or environment secrets are required.
+
+
+
+git add . 
+git commit -m "new updated"
+git push

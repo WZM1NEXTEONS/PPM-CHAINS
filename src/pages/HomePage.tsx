@@ -211,11 +211,10 @@ export const HomePage: React.FC = () => {
                 type="button"
                 onClick={() => setHeroIdx(idx)}
                 aria-label={`Show highlight ${idx + 1}`}
-                className={`w-3 rounded-full transition-all duration-200 ${
-                  heroIdx === idx
-                    ? 'h-9 bg-white/80'
-                    : 'h-4 bg-white/25 hover:bg-white/45'
-                }`}
+                className={`w-3 rounded-full transition-all duration-200 ${heroIdx === idx
+                  ? 'h-9 bg-white/80'
+                  : 'h-4 bg-white/25 hover:bg-white/45'
+                  }`}
               />
             ))}
           </div>
@@ -402,11 +401,10 @@ export const HomePage: React.FC = () => {
                     key={tab.value}
                     type="button"
                     onClick={() => setRangeFilter(tab.value)}
-                    className={`h-10 rounded-full border px-4 text-[13px] font-medium transition-colors duration-200 ${
-                      active
-                        ? 'border-[#244218]/30 bg-[#E4E8E3] font-semibold text-[#244218]'
-                        : 'border-black/12 bg-white text-[#555555] hover:border-[#244218]/40 hover:text-[#244218]'
-                    }`}
+                    className={`h-10 rounded-full border px-4 text-[13px] font-medium transition-colors duration-200 ${active
+                      ? 'border-[#244218]/30 bg-[#E4E8E3] font-semibold text-[#244218]'
+                      : 'border-black/12 bg-white text-[#555555] hover:border-[#244218]/40 hover:text-[#244218]'
+                      }`}
                   >
                     {tab.label}
                   </button>
@@ -547,9 +545,8 @@ export const HomePage: React.FC = () => {
                             {faq.q}
                           </span>
                           <ChevronDown
-                            className={`h-5 w-5 shrink-0 text-[#244218] transition-transform duration-200 ${
-                              isOpen ? 'rotate-180' : ''
-                            }`}
+                            className={`h-5 w-5 shrink-0 text-[#244218] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''
+                              }`}
                           />
                         </button>
                         {isOpen && (
