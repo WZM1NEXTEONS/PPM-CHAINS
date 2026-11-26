@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   ArrowRight,
@@ -12,6 +12,8 @@ import {
   Sparkles,
   CheckCircle2,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { PRODUCTS, ChainRange } from '../data/catalog';
 import { HOME_FAQS } from '../data/site';
@@ -41,25 +43,52 @@ const HERO_SLIDES = [
 
 const TRENDING_SPOTLIGHTS = [
   {
+    id: 'spot-trending',
     tag: 'Trending',
     title: 'Chains',
-    price: '₹1,070.00',
     image: '/images/trend-chain-5adcbd.png',
-    to: '/chains?tag=Trending',
+    isPhoto: false,
+    productCode: 'PPM-MM-101',
   },
   {
+    id: 'spot-bestseller',
     tag: 'Bestseller',
     title: 'Chains',
-    price: '₹1,070.00',
     image: '/images/trend-chain-5adcbd.png',
-    to: '/chains?tag=Bestseller',
+    isPhoto: false,
+    productCode: 'PPM-MM-102',
   },
   {
+    id: 'spot-premium',
     tag: 'Premium',
     title: 'Chains',
-    price: '₹1,070.00',
     image: '/images/trend-beads.png',
-    to: '/chains?tag=Premium',
+    isPhoto: false,
+    productCode: 'PPM-KH-203',
+  },
+  {
+    id: 'spot-classic',
+    tag: 'Classic Link',
+    title: 'Chains',
+    image: '/images/chain-classic-link.png',
+    isPhoto: true,
+    productCode: 'PPM-MM-103',
+  },
+  {
+    id: 'spot-rope',
+    tag: 'Handcrafted',
+    title: 'Rope Chains',
+    image: '/images/chain-rope.png',
+    isPhoto: true,
+    productCode: 'PPM-KH-201',
+  },
+  {
+    id: 'spot-box',
+    tag: 'Precision',
+    title: 'Box Chains',
+    image: '/images/chain-box.png',
+    isPhoto: true,
+    productCode: 'PPM-MM-104',
   },
 ];
 
@@ -121,6 +150,20 @@ export const HomePage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [rangeFilter, setRangeFilter] = useState<'All' | ChainRange>('All');
   const [openFaq, setOpenFaq] = useState<number>(1);
+  const spotlightScrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollSpotlights = (dir: 'left' | 'right') => {
+    const el = spotlightScrollRef.current;
+    if (!el) return;
+    const step = 404;
+    el.scrollBy({ left: dir === 'right' ? step : -step, behavior: 'smooth' });
+  };
+
+  const handleSpotlightEnquire = (productCode: string) => {
+    const found = PRODUCTS.find((p) => p.code === productCode) ?? null;
+    setSelectedProduct(found);
+    navigate('/enquiry');
+  };
 
   const filteredCatalog = useMemo(() => {
     return PRODUCTS.filter((item) => {
@@ -221,15 +264,18 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3 FLOATING TRENDING / BESTSELLER / PREMIUM CARDS */}
-      <section className="relative z-20 -mt-20 pb-8">
-        <div className="ppm-container">
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+      {/* SCROLLABLE TRENDING / BESTSELLER / PREMIUM CARDS */}
+      <section className="relative z-20 -mt-20 pb-4">
+        <div className="ppm-container relative">
+          <div
+            ref={spotlightScrollRef}
+            className="no-scrollbar flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 pt-1"
+          >
             {TRENDING_SPOTLIGHTS.map((card) => (
               <article
-                key={card.tag}
-                onClick={() => navigate(card.to)}
-                className="group relative h-[268px] cursor-pointer overflow-hidden rounded-[28px] bg-[#F1F1F1] p-5 card-shadow-trending transition-transform duration-300 hover:-translate-y-1.5"
+                key={card.id}
+                onClick={() => handleSpotlightEnquire(card.productCode)}
+                className="group relative h-[268px] w-[84vw] max-w-[384px] sm:w-[360px] lg:w-[384px] shrink-0 snap-start cursor-pointer overflow-hidden rounded-[28px] bg-[#F1F1F1] p-5 card-shadow-trending transition-transform duration-300 hover:-translate-y-1.5"
               >
                 <div className="relative z-10 flex flex-col text-[#62513B]">
                   <span className="text-[14px] font-medium">{card.tag}</span>
@@ -239,13 +285,16 @@ export const HomePage: React.FC = () => {
                 <img
                   src={card.image}
                   alt={`${card.tag} ${card.title}`}
-                  className="pointer-events-none absolute right-2 top-0 h-[215px] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                  className={
+                    card.isPhoto
+                      ? 'pointer-events-none absolute right-4 top-4 h-[180px] w-[170px] rounded-[18px] object-cover transition-transform duration-500 group-hover:scale-105'
+                      : 'pointer-events-none absolute right-2 top-0 h-[215px] w-auto object-contain transition-transform duration-500 group-hover:scale-105'
+                  }
                 />
 
                 <div className="absolute inset-x-4 bottom-4 z-10 flex items-center gap-2.5">
-                  <div className="flex h-11 flex-1 items-center rounded-[10px] bg-[#244218] px-4 text-[15px] text-white">
-                    <span className="font-normal">starting from</span>
-                    <strong className="ml-1.5 font-bold">{card.price}</strong>
+                  <div className="flex h-11 flex-1 items-center rounded-full bg-[#244218] px-5 text-[14px] font-semibold text-white transition-colors group-hover:bg-[#1d3513]">
+                    <span>Enquire Now</span>
                   </div>
                   <span
                     aria-hidden="true"
@@ -256,6 +305,26 @@ export const HomePage: React.FC = () => {
                 </div>
               </article>
             ))}
+          </div>
+
+          {/* Horizontal scroll controls */}
+          <div className="-mt-4 flex items-center justify-end gap-2">
+            <button
+              type="button"
+              onClick={() => scrollSpotlights('left')}
+              aria-label="Scroll featured chains left"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-black/12 bg-white text-[#244218] shadow-xs transition-colors hover:bg-[#244218] hover:text-white"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollSpotlights('right')}
+              aria-label="Scroll featured chains right"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-black/12 bg-white text-[#244218] shadow-xs transition-colors hover:bg-[#244218] hover:text-white"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
           </div>
         </div>
       </section>

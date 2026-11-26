@@ -85,6 +85,15 @@
     0 7px 18px rgba(0, 0, 0, 0.1);
 }
 
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes fadeSlideDown {
   from {
     opacity: 0;
