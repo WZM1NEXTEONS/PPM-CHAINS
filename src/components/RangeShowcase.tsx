@@ -2,7 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
-export const RangeShowcase: React.FC = () => {
+interface RangeShowcaseProps {
+  variant?: 'default' | 'craft';
+}
+
+export const RangeShowcase: React.FC<RangeShowcaseProps> = ({ variant = 'default' }) => {
+  const isCraft = variant === 'craft';
+  const leftImg = isCraft ? '/images/mfg-stage-2.png' : '/images/range-wholesale-49d161.png';
+  const middleImg = isCraft ? '/images/cat-craft-bench-4a95aa.png' : '/images/range-machine-24095d.png';
+  const rightImg = isCraft ? '/images/mfg-stage-3.png' : '/images/range-kerala-67113d.png';
+
   return (
     <section className="bg-white py-10 lg:py-14">
       <div className="ppm-container">
@@ -18,7 +27,7 @@ export const RangeShowcase: React.FC = () => {
           {/* Left large card */}
           <div className="group relative min-h-[420px] sm:min-h-[540px] lg:col-span-6 overflow-hidden rounded-[24px]">
             <img
-              src="/images/range-wholesale-49d161.png"
+              src={leftImg}
               alt="Chains for wholesale buyers"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
@@ -57,7 +66,7 @@ export const RangeShowcase: React.FC = () => {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-6">
             <div className="group relative min-h-[380px] sm:min-h-[540px] overflow-hidden rounded-[24px]">
               <img
-                src="/images/range-machine-24095d.png"
+                src={middleImg}
                 alt="Machine-made chains"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
@@ -90,9 +99,9 @@ export const RangeShowcase: React.FC = () => {
 
             <div className="group relative min-h-[380px] sm:min-h-[540px] overflow-hidden rounded-[24px]">
               <img
-                src="/images/range-kerala-67113d.png"
+                src={rightImg}
                 alt="Kerala handcrafted chains"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
               />
               <div
                 aria-hidden="true"

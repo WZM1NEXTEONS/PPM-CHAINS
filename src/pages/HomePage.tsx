@@ -185,33 +185,25 @@ export const HomePage: React.FC = () => {
     <div className="bg-white">
       {/* HERO SECTION */}
       <section className="relative overflow-hidden bg-[#244218] pt-28 pb-32 sm:pt-32 sm:pb-36 lg:min-h-[790px] lg:pt-36">
-        {/* Decorative golden circle & concentric rings */}
+        {/* Workshop goldsmith photograph on the right */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute right-[8%] top-20 h-[440px] w-[440px] sm:h-[540px] sm:w-[540px] rounded-full bg-[#B2A550]/85"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute right-[5%] top-12 h-[540px] w-[540px] rounded-full border border-[#B2A550]/45"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute right-[1%] top-4 h-[540px] w-[540px] rounded-full border border-[#B2A550]/30"
-        />
-
-        {/* Hero portrait image on right */}
-        <div className="pointer-events-none absolute right-[-12%] sm:right-[-4%] lg:right-[3%] top-16 h-[560px] sm:h-[680px] lg:h-[750px] w-auto opacity-45 sm:opacity-85 lg:opacity-100">
+          className="pointer-events-none absolute inset-y-0 right-0 w-full lg:w-[66%]"
+        >
           <img
-            src="/images/home-hero-portrait-80a352.png"
-            alt="Model wearing gold jewellery chains"
-            className="h-full w-auto object-contain object-bottom"
+            src="/images/home-hero-workshop.png"
+            alt="Goldsmith crafting chains at a traditional workbench"
+            className="h-full w-full object-cover object-center opacity-55 sm:opacity-75 lg:opacity-95"
           />
+          {/* Left blend into brand green & top/bottom soft fades */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#244218] via-[#244218]/75 via-30% to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#244218]/60 to-transparent" />
         </div>
 
         {/* Bottom gradient fade */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#244218] to-transparent"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#244218] via-[#244218]/50 to-transparent"
         />
 
         <div className="ppm-container relative z-10 flex items-center justify-between">
@@ -573,7 +565,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* FIND THE RIGHT CHAINS FOR YOUR BUSINESS */}
-      <RangeShowcase />
+      <RangeShowcase variant="craft" />
 
       {/* FREQUENTLY ASKED QUESTIONS */}
       <section className="bg-white py-12 lg:py-16">
@@ -634,7 +626,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* PHOTOGRAPHIC CTA BANNER */}
-      <PhotoCtaBanner />
+      <PhotoCtaBanner variant="craft" />
 
       {/* WHOLESALE ENQUIRY SPLIT SECTION */}
       <WholesaleEnquirySection />

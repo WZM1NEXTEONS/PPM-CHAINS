@@ -2,21 +2,52 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEnquiry } from '../context/EnquiryContext';
 
-export const PhotoCtaBanner: React.FC = () => {
+interface PhotoCtaBannerProps {
+  variant?: 'default' | 'craft';
+}
+
+export const PhotoCtaBanner: React.FC<PhotoCtaBannerProps> = ({ variant = 'default' }) => {
   const navigate = useNavigate();
   const { setSelectedProduct } = useEnquiry();
+  const isCraft = variant === 'craft';
 
   return (
-    <section className="relative min-h-[420px] sm:min-h-[480px] overflow-hidden border-b border-white/6">
-      <img
-        src="/images/home-cta-banner-4ac2a1.png"
-        alt="Jewellery craftsmanship portrait"
-        className="absolute inset-0 h-full w-full object-cover object-center"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/40 to-black/20"
-      />
+    <section
+      className={`relative min-h-[420px] sm:min-h-[480px] overflow-hidden border-b border-white/6 ${
+        isCraft ? 'bg-[#1c1711]' : ''
+      }`}
+    >
+      {isCraft ? (
+        <>
+          <img
+            src="/images/mfg-stage-1.png"
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full scale-105 object-cover object-center opacity-35 blur-[2px]"
+          />
+          <img
+            src="/images/hero-banner-3.png"
+            alt="Master goldsmith hammering gold chain at workbench"
+            className="absolute inset-0 h-full w-full object-cover object-[70%_25%]"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/15"
+          />
+        </>
+      ) : (
+        <>
+          <img
+            src="/images/home-cta-banner-4ac2a1.png"
+            alt="Jewellery craftsmanship portrait"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/40 to-black/20"
+          />
+        </>
+      )}
       <div className="ppm-container relative z-10 flex min-h-[420px] sm:min-h-[480px] items-center py-14">
         <div className="flex max-w-[526px] flex-col gap-6 text-white">
           <div className="flex flex-col gap-3">
